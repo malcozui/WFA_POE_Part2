@@ -8,9 +8,9 @@ namespace WFA_POE
 {
     internal class SwampCreature : Enemy
     {
-        public SwampCreature(int x, int y) : base(x, y, 10, 10, 1)
+        public SwampCreature(int x, int y, int hp = 10) : base(x, y, hp, 10, 1)
         {
-
+            this.hp = hp;
         }
 
         public override Movement ReturnMove(Movement move = Movement.NoMovement) // Check movemnet

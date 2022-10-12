@@ -8,9 +8,9 @@ namespace WFA_POE
 {
     internal class Mage : Enemy
     {
-        public Mage(int x, int y) : base(x, y, 5, 5, 5)
+        public Mage(int x, int y, int hp = 5) : base(x, y, hp, 5, 5)
         {
-
+            this.hp = hp;
         }
 
         public override Movement ReturnMove(Movement move = Movement.NoMovement) // Check movemnet
