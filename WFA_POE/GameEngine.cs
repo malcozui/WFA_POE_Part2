@@ -69,7 +69,8 @@ namespace WFA_POE
                             sb.Append(HERO);
                             break;
                         case Tile.TileType.Enemy:
-                            sb.Append(SWAMP_CREATURE);
+                            if (gameMap.GameMap[i, j] is SwampCreature) sb.Append(SWAMP_CREATURE);
+                            else sb.Append(MAGE);
                             break;
                         case Tile.TileType.Obstacle:
                             sb.Append(OBSTACLE);
@@ -79,9 +80,6 @@ namespace WFA_POE
                             break;
                         case Tile.TileType.Gold:
                             sb.Append(GOLD);
-                            break;
-                        case Tile.TileType.Mage:
-                            sb.Append(MAGE);
                             break;
                         default:
                             break;
