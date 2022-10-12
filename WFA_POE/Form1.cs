@@ -3,8 +3,6 @@ namespace WFA_POE
     public partial class GameForm : Form
     {
         private GameEngine engine;
-        public delegate void Updaters();
-        new Updaters Update;
 
         public GameForm()
         {
@@ -13,10 +11,6 @@ namespace WFA_POE
             UpdateMap();
             DispPlayerStats();
             UpdateEnemyComboBox();
-
-            Update += UpdateMap;
-            Update += DispPlayerStats;
-            Update += UpdateVision;
         }
 
 
@@ -99,41 +93,65 @@ namespace WFA_POE
         private void Btn_Up_Click(object sender, EventArgs e) // Up Button
         {
             engine.MovePlayer(Character.Movement.Up);
-            Update();
             engine.MoveEnemies();
+            DispPlayerStats();
+            UpdateSelectedEnemyStats();
+            UpdateEnemyComboBox();
+            UpdateVision();
+
+            UpdateMap();
 
         }
 
         private void Btn_Down_Click(object sender, EventArgs e) // Down Button
         {
             engine.MovePlayer(Character.Movement.Down);
-            Update();
             engine.MoveEnemies();
+            DispPlayerStats();
+            UpdateSelectedEnemyStats();
+            UpdateEnemyComboBox();
+            UpdateVision();
+
+            UpdateMap();
 
         }
 
         private void Btn_Left_Click(object sender, EventArgs e) // Left Button
         {
             engine.MovePlayer(Character.Movement.Left);
-            Update();
             engine.MoveEnemies();
+            DispPlayerStats();
+            UpdateSelectedEnemyStats();
+            UpdateEnemyComboBox();
+            UpdateVision();
+
+            UpdateMap();
 
         }
 
         private void Btn_Right_Click(object sender, EventArgs e) // Right Button
         {
             engine.MovePlayer(Character.Movement.Right);
-            Update();
             engine.MoveEnemies();
+            DispPlayerStats();
+            UpdateSelectedEnemyStats();
+            UpdateEnemyComboBox();
+            UpdateVision();
+
+            UpdateMap();
 
         }
 
         private void Btn_Stay_Click(object sender, EventArgs e)
         {
             engine.MovePlayer(Character.Movement.NoMovement);
-            Update();
             engine.MoveEnemies();
+            DispPlayerStats();
+            UpdateSelectedEnemyStats();
+            UpdateEnemyComboBox();
+            UpdateVision();
 
+            UpdateMap();
 
         }
         #endregion

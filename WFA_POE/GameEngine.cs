@@ -101,76 +101,76 @@ namespace WFA_POE
         {
             for (int i = 0; i < gameMap.GameEnemies.Length; i++)
             {
-                if (gameMap.GameEnemies[i].ReturnMove(direction) == direction)
+                direction = gameMap.GameEnemies[i].ReturnMove(direction);
+
+                switch (direction)
                 {
-                    switch (direction)
-                    {
-                        case Character.Movement.Up:
-                            Item? item = gameMap.GetItemAtPosition(gameMap.GameEnemies[i].Y - 1, gameMap.GameEnemies[i].X);
-                            if (item is Gold)
-                            {
-                                Gold goldItem;
-                                goldItem = (Gold)item;
-                                gameMap.GameEnemies[i].GoldAmount += goldItem.GoldAmount;
-                            }
-                            break;
-                        case Character.Movement.Down:
-                            Item? item2 = gameMap.GetItemAtPosition(gameMap.GameEnemies[i].Y + 1, gameMap.GameEnemies[i].X);
-                            if (item2 is Gold)
-                            {
-                                Gold goldItem;
-                                goldItem = (Gold)item2;
-                                gameMap.GameEnemies[i].GoldAmount += goldItem.GoldAmount;
-                            }
-                            break;
-                        case Character.Movement.Left:
-                            Item? item3 = gameMap.GetItemAtPosition(gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X - 1);
-                            if (item3 is Gold)
-                            {
-                                Gold goldItem;
-                                goldItem = (Gold)item3;
-                                gameMap.GameEnemies[i].GoldAmount += goldItem.GoldAmount;
-                            }
-                            break;
-                        case Character.Movement.Right:
-                            Item? item4 = gameMap.GetItemAtPosition(gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X + 1);
-                            if (item4 is Gold)
-                            {
-                                Gold goldItem;
-                                goldItem = (Gold)item4;
-                                gameMap.GameEnemies[i].GoldAmount += goldItem.GoldAmount;
-                            }
-                            break;
-                    }
-                    //Moves the player in the requested direction
-                    gameMap.GameEnemies[i].Move(direction);
-                    switch (gameMap.GameEnemies[i])
-                    {
-                        case SwampCreature:
-                            gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X] = new SwampCreature(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].Hp);
-                            break;
-                        case Mage:
-                            gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X] = new Mage(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].Hp);
-                            break;
-                    }
-                    switch (direction)
-                    {
-                        //makes the tile the player was in empty after they leave.
-                        case Character.Movement.Up:
-                            gameMap.GameMap[gameMap.GameEnemies[i].Y + 1, gameMap.GameEnemies[i].X] = new EmptyTile(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y) { Type = Tile.TileType.EmptyTile };
-                            break;
-                        case Character.Movement.Down:
-                            gameMap.GameMap[gameMap.GameEnemies[i].Y - 1, gameMap.GameEnemies[i].X] = new EmptyTile(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y) { Type = Tile.TileType.EmptyTile };
-                            break;
-                        case Character.Movement.Left:
-                            gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X + 1] = new EmptyTile(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y) { Type = Tile.TileType.EmptyTile };
-                            break;
-                        case Character.Movement.Right:
-                            gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X - 1] = new EmptyTile(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y) { Type = Tile.TileType.EmptyTile };
-                            break;
-                    }
+                    case Character.Movement.Up:
+                        Item? item = gameMap.GetItemAtPosition(gameMap.GameEnemies[i].Y - 1, gameMap.GameEnemies[i].X);
+                        if (item is Gold)
+                        {
+                            Gold goldItem;
+                            goldItem = (Gold)item;
+                            gameMap.GameEnemies[i].GoldAmount += goldItem.GoldAmount;
+                        }
+                        break;
+                    case Character.Movement.Down:
+                        Item? item2 = gameMap.GetItemAtPosition(gameMap.GameEnemies[i].Y + 1, gameMap.GameEnemies[i].X);
+                        if (item2 is Gold)
+                        {
+                            Gold goldItem;
+                            goldItem = (Gold)item2;
+                            gameMap.GameEnemies[i].GoldAmount += goldItem.GoldAmount;
+                        }
+                        break;
+                    case Character.Movement.Left:
+                        Item? item3 = gameMap.GetItemAtPosition(gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X - 1);
+                        if (item3 is Gold)
+                        {
+                            Gold goldItem;
+                            goldItem = (Gold)item3;
+                            gameMap.GameEnemies[i].GoldAmount += goldItem.GoldAmount;
+                        }
+                        break;
+                    case Character.Movement.Right:
+                        Item? item4 = gameMap.GetItemAtPosition(gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X + 1);
+                        if (item4 is Gold)
+                        {
+                            Gold goldItem;
+                            goldItem = (Gold)item4;
+                            gameMap.GameEnemies[i].GoldAmount += goldItem.GoldAmount;
+                        }
+                        break;
+                }
+                //Moves the player in the requested direction
+                gameMap.GameEnemies[i].Move(direction);
+                switch (gameMap.GameEnemies[i])
+                {
+                    case SwampCreature:
+                        gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X] = new SwampCreature(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].Hp);
+                        break;
+                    case Mage:
+                        gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X] = new Mage(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].Hp);
+                        break;
+                }
+                switch (direction)
+                {
+                    //makes the tile the player was in empty after they leave.
+                    case Character.Movement.Up:
+                        gameMap.GameMap[gameMap.GameEnemies[i].Y + 1, gameMap.GameEnemies[i].X] = new EmptyTile(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y) { Type = Tile.TileType.EmptyTile };
+                        break;
+                    case Character.Movement.Down:
+                        gameMap.GameMap[gameMap.GameEnemies[i].Y - 1, gameMap.GameEnemies[i].X] = new EmptyTile(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y) { Type = Tile.TileType.EmptyTile };
+                        break;
+                    case Character.Movement.Left:
+                        gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X + 1] = new EmptyTile(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y) { Type = Tile.TileType.EmptyTile };
+                        break;
+                    case Character.Movement.Right:
+                        gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X - 1] = new EmptyTile(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y) { Type = Tile.TileType.EmptyTile };
+                        break;
                 }
             }
+            
             //Movement complete, call Enemy attack here
         }
 
