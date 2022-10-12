@@ -9,7 +9,7 @@ namespace WFA_POE
     internal class GameEngine
     {
         private Map gameMap;
-        private static readonly string HERO = "ඞ", EMPTY = "░", SWAMP_CREATURE = "👾", OBSTACLE = "◙", GOLD = "©";  // Map TileType icons
+        private static readonly string HERO = "ඞ", EMPTY = "░", SWAMP_CREATURE = "👾", OBSTACLE = "◙", GOLD = "©" , MAGE = "M";  // Map TileType icons
 
         public GameEngine()
         {
@@ -79,6 +79,9 @@ namespace WFA_POE
                             break;
                         case Tile.TileType.Gold:
                             sb.Append(GOLD);
+                            break;
+                        case Tile.TileType.Mage:
+                            sb.Append(MAGE);
                             break;
                         default:
                             break;
