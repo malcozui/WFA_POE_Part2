@@ -95,7 +95,7 @@ namespace WFA_POE
             engine.MovePlayer(Character.Movement.Up);
             engine.MoveEnemies();
             DispPlayerStats();
-            UpdateSelectedEnemyStats();
+             
             UpdateEnemyComboBox();
             UpdateVision();
 
@@ -108,7 +108,7 @@ namespace WFA_POE
             engine.MovePlayer(Character.Movement.Down);
             engine.MoveEnemies();
             DispPlayerStats();
-            UpdateSelectedEnemyStats();
+             
             UpdateEnemyComboBox();
             UpdateVision();
 
@@ -121,7 +121,7 @@ namespace WFA_POE
             engine.MovePlayer(Character.Movement.Left);
             engine.MoveEnemies();
             DispPlayerStats();
-            UpdateSelectedEnemyStats();
+             
             UpdateEnemyComboBox();
             UpdateVision();
 
@@ -134,7 +134,7 @@ namespace WFA_POE
             engine.MovePlayer(Character.Movement.Right);
             engine.MoveEnemies();
             DispPlayerStats();
-            UpdateSelectedEnemyStats();
+             
             UpdateEnemyComboBox();
             UpdateVision();
 
@@ -147,7 +147,7 @@ namespace WFA_POE
             engine.MovePlayer(Character.Movement.NoMovement);
             engine.MoveEnemies();
             DispPlayerStats();
-            UpdateSelectedEnemyStats();
+             
             UpdateEnemyComboBox();
             UpdateVision();
 

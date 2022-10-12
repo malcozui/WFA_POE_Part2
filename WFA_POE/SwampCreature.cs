@@ -23,7 +23,7 @@ namespace WFA_POE
             {
                 if (charactermovement[i].Type != TileType.EmptyTile) blockedCount++;
             }
-            if (blockedCount <= 4) return Movement.NoMovement;
+            if (blockedCount >= 4) return Movement.NoMovement;
 
             while (loop)
             {

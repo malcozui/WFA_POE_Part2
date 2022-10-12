@@ -142,20 +142,20 @@ namespace WFA_POE
                         }
                         break;
                 }
-                //Moves the player in the requested direction
+                //Moves the enemies in the requested direction
                 gameMap.GameEnemies[i].Move(direction);
                 switch (gameMap.GameEnemies[i])
                 {
                     case SwampCreature:
-                        gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X] = new SwampCreature(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].Hp);
+                        gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X] = new SwampCreature(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].Hp) { Type = Tile.TileType.Enemy };
                         break;
                     case Mage:
-                        gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X] = new Mage(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].Hp);
+                        gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X] = new Mage(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].Hp) { Type = Tile.TileType.Enemy };
                         break;
                 }
                 switch (direction)
                 {
-                    //makes the tile the player was in empty after they leave.
+                    //makes the tile the enemy was in empty after they leave.
                     case Character.Movement.Up:
                         gameMap.GameMap[gameMap.GameEnemies[i].Y + 1, gameMap.GameEnemies[i].X] = new EmptyTile(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y) { Type = Tile.TileType.EmptyTile };
                         break;
@@ -170,8 +170,6 @@ namespace WFA_POE
                         break;
                 }
             }
-            
-            //Movement complete, call Enemy attack here
         }
 
         public override string ToString() // Display methode
