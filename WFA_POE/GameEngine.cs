@@ -72,7 +72,7 @@ namespace WFA_POE
                 //Moves the player in the requested direction
                 gameMap.GameHero.Move(direction);
                 
-                gameMap.GameMap[gameMap.GameHero.Y, gameMap.GameHero.X] = new Hero(gameMap.GameHero.Y, gameMap.GameHero.X, gameMap.GameHero.Hp, gameMap.GameHero.MaxHp) { Type = Tile.TileType.Hero };
+                gameMap.GameMap[gameMap.GameHero.Y, gameMap.GameHero.X] = new Hero(gameMap.GameHero.X, gameMap.GameHero.Y, gameMap.GameHero.Hp, gameMap.GameHero.MaxHp) { Type = Tile.TileType.Hero };
                 switch (direction)
                 {
                     //makes the tile the player was in empty after they leave.
@@ -147,14 +147,12 @@ namespace WFA_POE
                     switch (gameMap.GameEnemies[i])
                     {
                         case SwampCreature:
-                            gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X] = new SwampCreature();
+                            gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X] = new SwampCreature(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].Hp);
                             break;
                         case Mage:
-                            break;
-                        default:
+                            gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X] = new Mage(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].Hp);
                             break;
                     }
-                    //gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X] = new Hero(gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Hp, gameMap.GameEnemies[i].MaxHp) { Type = Tile.TileType.Hero };
                     switch (direction)
                     {
                         //makes the tile the player was in empty after they leave.
@@ -173,6 +171,7 @@ namespace WFA_POE
                     }
                 }
             }
+            //Movement complete, call Enemy attack here
         }
 
         public override string ToString() // Display methode
