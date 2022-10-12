@@ -9,7 +9,8 @@ namespace WFA_POE
     internal class GameEngine
     {
         private Map gameMap;
-        private static readonly string HERO = "ඞ", EMPTY = "░", SWAMP_CREATURE = "👾", OBSTACLE = "◙", GOLD = "©" , MAGE = "🧙‍";  // Map TileType icons
+        //Map TileType icons
+        private static readonly string HERO = "ඞ", EMPTY = "░", SWAMP_CREATURE = "👾", OBSTACLE = "◙", GOLD = "©" , MAGE = "🧙‍"; 
 
         public GameEngine()
         {
