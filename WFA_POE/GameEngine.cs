@@ -34,7 +34,7 @@ namespace WFA_POE
                 {
                     case Character.Movement.Up:
                         Item? item = gameMap.GetItemAtPosition(gameMap.GameHero.Y - 1, gameMap.GameHero.X);
-                        if (item is not null)
+                        if (item is Gold)
                         {
                             Gold goldItem;
                             goldItem = (Gold)item;
@@ -43,7 +43,7 @@ namespace WFA_POE
                         break;
                     case Character.Movement.Down:
                         Item? item2 = gameMap.GetItemAtPosition(gameMap.GameHero.Y + 1, gameMap.GameHero.X);
-                        if (item2 is not null && item2 is Gold)
+                        if (item2 is Gold)
                         {
                             Gold goldItem;
                             goldItem = (Gold)item2;
@@ -52,7 +52,7 @@ namespace WFA_POE
                         break;
                     case Character.Movement.Left:
                         Item? item3 = gameMap.GetItemAtPosition(gameMap.GameHero.Y, gameMap.GameHero.X - 1);
-                        if (item3 is not null && item3 is Gold)
+                        if (item3 is Gold)
                         {
                             Gold goldItem;
                             goldItem = (Gold)item3;
@@ -61,7 +61,7 @@ namespace WFA_POE
                         break;
                     case Character.Movement.Right:
                         Item? item4 = gameMap.GetItemAtPosition(gameMap.GameHero.Y, gameMap.GameHero.X + 1);
-                        if (item4 is not null && item4 is Gold)
+                        if (item4 is Gold)
                         {
                             Gold goldItem;
                             goldItem = (Gold)item4;
@@ -97,7 +97,7 @@ namespace WFA_POE
             }
         }
 
-        public void MoveEnemies(Character.Movement direction)
+        public void MoveEnemies(Character.Movement direction = Character.Movement.NoMovement)
         {
             for (int i = 0; i < gameMap.GameEnemies.Length; i++)
             {
@@ -107,7 +107,7 @@ namespace WFA_POE
                     {
                         case Character.Movement.Up:
                             Item? item = gameMap.GetItemAtPosition(gameMap.GameEnemies[i].Y - 1, gameMap.GameEnemies[i].X);
-                            if (item is not null)
+                            if (item is Gold)
                             {
                                 Gold goldItem;
                                 goldItem = (Gold)item;
@@ -116,7 +116,7 @@ namespace WFA_POE
                             break;
                         case Character.Movement.Down:
                             Item? item2 = gameMap.GetItemAtPosition(gameMap.GameEnemies[i].Y + 1, gameMap.GameEnemies[i].X);
-                            if (item2 is not null && item2 is Gold)
+                            if (item2 is Gold)
                             {
                                 Gold goldItem;
                                 goldItem = (Gold)item2;
@@ -125,7 +125,7 @@ namespace WFA_POE
                             break;
                         case Character.Movement.Left:
                             Item? item3 = gameMap.GetItemAtPosition(gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X - 1);
-                            if (item3 is not null && item3 is Gold)
+                            if (item3 is Gold)
                             {
                                 Gold goldItem;
                                 goldItem = (Gold)item3;
@@ -134,7 +134,7 @@ namespace WFA_POE
                             break;
                         case Character.Movement.Right:
                             Item? item4 = gameMap.GetItemAtPosition(gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X + 1);
-                            if (item4 is not null && item4 is Gold)
+                            if (item4 is Gold)
                             {
                                 Gold goldItem;
                                 goldItem = (Gold)item4;

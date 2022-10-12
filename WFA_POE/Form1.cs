@@ -100,12 +100,15 @@ namespace WFA_POE
         {
             engine.MovePlayer(Character.Movement.Up);
             Update();
+            engine.MoveEnemies();
+
         }
 
         private void Btn_Down_Click(object sender, EventArgs e) // Down Button
         {
             engine.MovePlayer(Character.Movement.Down);
             Update();
+            engine.MoveEnemies();
 
         }
 
@@ -113,6 +116,7 @@ namespace WFA_POE
         {
             engine.MovePlayer(Character.Movement.Left);
             Update();
+            engine.MoveEnemies();
 
         }
 
@@ -120,6 +124,7 @@ namespace WFA_POE
         {
             engine.MovePlayer(Character.Movement.Right);
             Update();
+            engine.MoveEnemies();
 
         }
 
@@ -127,8 +132,16 @@ namespace WFA_POE
         {
             engine.MovePlayer(Character.Movement.NoMovement);
             Update();
+            engine.MoveEnemies();
+
 
         }
+        #endregion
+
+        #region Additional Methods
+
+
+
         #endregion
 
     }
