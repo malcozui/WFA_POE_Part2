@@ -15,13 +15,13 @@ namespace WFA_POE
 
         public override Movement ReturnMove(Movement move = Movement.NoMovement) // Check movemnet
         {
-            return Movement.NoMovement
+            return Movement.NoMovement;
         }
 
         public override bool CheckRange(Character target)
         {
             //checks if the target is within the 8 tiles around the enemy
-            return (Math.Abs(target.X - this.X) <= 1 && Math.Abs(target.Y - this.Y) <= 1)
+            return (Math.Abs(target.X - this.X) <= 1 && Math.Abs(target.Y - this.Y) <= 1);
         }
     }
 }
