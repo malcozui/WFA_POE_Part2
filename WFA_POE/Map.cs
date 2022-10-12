@@ -56,14 +56,38 @@ namespace WFA_POE
             hero.Hp = 99;
             hero.MaxHp = 99;
 
+            int randomEnemy = 0;
+            Random rnd = new Random();
+            
 
-            for (int i = 0; i < enemies.Length; i++)
+
+            for (int i = 0; i < enemies.Length; i++)  // 50/ 50 enemy or mage spwan on map
             {
-                Create(Tile.TileType.Enemy);
+                randomEnemy = rnd.Next(0, 10); // Random number 
+                
+                if (randomEnemy <= 5)
+                {
+                    Create(Tile.TileType.Enemy);
+                }
+                else
+                {
+                    Create(Tile.TileType.Mage);
+                }
+
+                
             }
             for (int i = 0; i < items.Length; i++)
             {
-                Create(Tile.TileType.Gold);
+                randomEnemy = rnd.Next(0, 10);
+
+                if (randomEnemy <= 5)
+                {
+                    Create(Tile.TileType.Enemy);
+                }
+                else
+                {
+                    Create(Tile.TileType.Mage);
+                }
             }
             UpdateVision();
         }
