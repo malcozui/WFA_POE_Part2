@@ -167,6 +167,11 @@ namespace WFA_POE
                     map[rndmY, rndmX] = gold;
                     map[rndmY, rndmX].Type = Tile.TileType.EmptyTile;
                     return gold;
+                case Tile.TileType.Mage:
+                    Mage mage = new Mage(rndmX, rndmY);
+                    map[rndmY, rndmX] = mage;
+                    map[rndmY, rndmX].Type = Tile.TileType.EmptyTile;
+                    return mage;
                 default:
                     EmptyTile tmp4 = new EmptyTile(rndmX, rndmY);
                     map[rndmY, rndmX] = tmp4;
