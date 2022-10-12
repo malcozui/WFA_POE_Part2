@@ -15,8 +15,7 @@ namespace WFA_POE
             Gold,
             Weapon,
             Obstacle,
-            EmptyTile,
-            Mage
+            EmptyTile
         }
 
         public Tile(int x, int y) // X and y position in map of Tiletype

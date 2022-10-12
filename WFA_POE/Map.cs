@@ -56,38 +56,14 @@ namespace WFA_POE
             hero.Hp = 99;
             hero.MaxHp = 99;
 
-            int randomEnemy = 0;
-            Random rnd = new Random();
-            
-
-
-            for (int i = 0; i < enemies.Length; i++)  // 50/ 50 enemy or mage spwan on map
+            for (int i = 0; i < enemies.Length; i++)  
             {
-                randomEnemy = rnd.Next(0, 10); // Random number 
-                
-                if (randomEnemy <= 5)
-                {
-                    Create(Tile.TileType.Enemy);
-                }
-                else
-                {
-                    Create(Tile.TileType.Mage);
-                }
-
-                
+                Create(Tile.TileType.Enemy);
             }
             for (int i = 0; i < items.Length; i++)
             {
-                randomEnemy = rnd.Next(0, 10);
-
-                if (randomEnemy <= 5)
-                {
-                    Create(Tile.TileType.Enemy);
-                }
-                else
-                {
-                    Create(Tile.TileType.Mage);
-                }
+                Create(Tile.TileType.Gold);
+                
             }
             UpdateVision();
         }
@@ -152,11 +128,22 @@ namespace WFA_POE
                     map[rndmY, rndmX].Type = Tile.TileType.Hero;
                     return tmp;
                 case Tile.TileType.Enemy:
-                    SwampCreature tmp2 = new SwampCreature(rndmX, rndmY);
-                    map[rndmY, rndmX] = tmp2;
-                    map[rndmY, rndmX].Type = Tile.TileType.Enemy;
-                    AddEnemy(tmp2);
-                    return tmp2;
+                    if (random.Next(2) == 0)
+                    {
+                        SwampCreature tmp2 = new SwampCreature(rndmX, rndmY);
+                        map[rndmY, rndmX] = tmp2;
+                        map[rndmY, rndmX].Type = Tile.TileType.Enemy;
+                        AddEnemy(tmp2);
+                        return tmp2;
+                    }
+                    else
+                    {
+                        Mage mage = new Mage(rndmX, rndmY);
+                        map[rndmY, rndmX] = mage;
+                        map[rndmY, rndmX].Type = Tile.TileType.Enemy;
+                        AddEnemy(mage);
+                        return mage;
+                    }
                 case Tile.TileType.EmptyTile:
                     EmptyTile tmp3 = new EmptyTile(rndmX, rndmY);
                     map[rndmY, rndmX] = tmp3;
@@ -167,11 +154,6 @@ namespace WFA_POE
                     map[rndmY, rndmX] = gold;
                     map[rndmY, rndmX].Type = Tile.TileType.EmptyTile;
                     return gold;
-                case Tile.TileType.Mage:
-                    Mage mage = new Mage(rndmX, rndmY);
-                    map[rndmY, rndmX] = mage;
-                    map[rndmY, rndmX].Type = Tile.TileType.EmptyTile;
-                    return mage;
                 default:
                     EmptyTile tmp4 = new EmptyTile(rndmX, rndmY);
                     map[rndmY, rndmX] = tmp4;
