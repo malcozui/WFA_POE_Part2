@@ -142,7 +142,7 @@ namespace WFA_POE
 
         }
 
-        private void Btn_Stay_Click(object sender, EventArgs e)
+        private void Btn_Stay_Click(object sender, EventArgs e) //Stay in place button
         {
             engine.MovePlayer(Character.Movement.NoMovement);
             engine.MoveEnemies();
