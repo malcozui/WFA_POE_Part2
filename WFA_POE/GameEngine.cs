@@ -13,7 +13,7 @@ namespace WFA_POE
 
         public GameEngine()
         {
-            gameMap = new Map(10, 15, 10, 15, 5); 
+            gameMap = new Map(10, 15, 10, 15, 5, 3); 
         }
 
         #region Properties

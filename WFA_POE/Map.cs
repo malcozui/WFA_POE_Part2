@@ -13,14 +13,23 @@ namespace WFA_POE
         private Enemy[] enemies;
         private int mapWidth, mapHeight;
         private Random random = new();
+        private Item[] items;
 
-
-        public Map(int minMapWidth, int maxMapWidth, int minMapHeight, int maxMapHeight, int enemyCount)  
+        /// <summary>
+        /// The Constructor for the map object
+        /// </summary>
+        /// <param name="minMapWidth">The inclusive minimum width of the map</param>
+        /// <param name="maxMapWidth">The exclusive maximum width of the map </param>
+        /// <param name="minMapHeight">The inclusive minimum height of the map</param>
+        /// <param name="maxMapHeight">The exclusive maximum height of the map</param>
+        /// <param name="enemyCount">The amount of enemies to spawn</param>
+        /// <param name="goldCount">The amount of gold to spawn</param>
+        public Map(int minMapWidth, int maxMapWidth, int minMapHeight, int maxMapHeight, int enemyCount, int goldCount)  
         {
             enemies = new Enemy[enemyCount];
             mapWidth = random.Next(minMapWidth, maxMapWidth);
             mapHeight = random.Next(minMapHeight, maxMapHeight);
-
+            items = new Item[goldCount];
             map = new Tile[mapWidth, mapHeight];
 
             //Generate map boundry and inside with TileType.Obstacle and TileType.EmptyTile
@@ -49,6 +58,10 @@ namespace WFA_POE
             for (int i = 0; i < enemies.Length; i++)
             {
                 Create(Tile.TileType.Enemy);
+            }
+            for (int i = 0; i < items.Length; i++)
+            {
+                Create(Tile.TileType.Gold);
             }
             UpdateVision();
         }
