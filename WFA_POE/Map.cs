@@ -27,9 +27,11 @@ namespace WFA_POE
         public Map(int minMapWidth, int maxMapWidth, int minMapHeight, int maxMapHeight, int enemyCount, int goldCount)  
         {
             enemies = new Enemy[enemyCount];
+            items = new Item[goldCount];
+
             mapWidth = random.Next(minMapWidth, maxMapWidth);
             mapHeight = random.Next(minMapHeight, maxMapHeight);
-            items = new Item[goldCount];
+            
             map = new Tile[mapWidth, mapHeight];
 
             //Generate map boundry and inside with TileType.Obstacle and TileType.EmptyTile
@@ -135,6 +137,11 @@ namespace WFA_POE
                     map[rndmY, rndmX] = tmp3;
                     map[rndmY, rndmX].Type = Tile.TileType.EmptyTile;
                     return tmp3;
+                case Tile.TileType.Gold:
+                    Gold gold = new Gold(rndmX, rndmY);
+                    map[rndmY, rndmX] = gold;
+                    map[rndmY, rndmX].Type = Tile.TileType.EmptyTile;
+                    return gold;
                 default:
                     EmptyTile tmp4 = new EmptyTile(rndmX, rndmY);
                     map[rndmY, rndmX] = tmp4;
@@ -151,6 +158,18 @@ namespace WFA_POE
                 if (enemies[i] == null)
                 {
                     enemies[i] = enemy;
+                    break;
+                }
+            }
+        }
+
+        private void AddIte(Item item)
+        {
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] == null)
+                {
+                    items[i] = item;
                     break;
                 }
             }
