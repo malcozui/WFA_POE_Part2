@@ -104,7 +104,7 @@ namespace WFA_POE
         {
             for (int i = 0; i < items.Length; i++)
             {
-                if (items[i] is null) return null;
+                if (items[i] is null) continue;
                 
                 if (items[i].X == x && items[i].Y == y)
                 {

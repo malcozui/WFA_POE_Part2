@@ -9,11 +9,11 @@ namespace WFA_POE
     internal class GameEngine
     {
         private Map gameMap;
-        private static readonly string HERO = "ඞ", EMPTY = "░", SWAMP_CREATURE = "👾", OBSTACLE = "◙", GOLD = "©" , MAGE = "M";  // Map TileType icons
+        private static readonly string HERO = "ඞ", EMPTY = "░", SWAMP_CREATURE = "👾", OBSTACLE = "◙", GOLD = "©" , MAGE = "🧙‍";  // Map TileType icons
 
         public GameEngine()
         {
-            gameMap = new Map(10, 15, 10, 15, 5, 3); 
+            gameMap = new Map(10, 15, 10, 11, 5, 3); 
         }
 
         #region Properties

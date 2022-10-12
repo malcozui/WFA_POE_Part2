@@ -16,16 +16,6 @@ namespace WFA_POE
 
 
         #region Events
-        private void GameForm_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void LblStart_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Btn_Attack_Click(object sender, EventArgs e)
         {
             if (ComboBox_Enemies.SelectedIndex == -1) return;
@@ -51,6 +41,16 @@ namespace WFA_POE
         private void ComboBox_Enemies_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateSelectedEnemyStats();
+        }
+        
+        private void GameForm_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void LblStart_Click(object sender, EventArgs e)
+        {
+
         }
         #endregion
 
