@@ -73,6 +73,7 @@ namespace WFA_POE
         public Tile[,] GameMap { get { return map; } } 
         public Hero GameHero { get { return hero; } }
         public Enemy[] GameEnemies { get { return enemies; } set { enemies = value; } }
+        public Item[] Items { get { return items; } set { items = value; } }
 
         #endregion
 
