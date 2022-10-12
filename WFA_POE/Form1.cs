@@ -3,6 +3,8 @@ namespace WFA_POE
     public partial class GameForm : Form
     {
         private GameEngine engine;
+        public delegate void Updaters();
+        Updaters Update;
 
         public GameForm()
         {
@@ -12,7 +14,11 @@ namespace WFA_POE
             DispPlayerStats();
             UpdateEnemyComboBox();
 
+            Update += UpdateMap;
+            Update += DispPlayerStats;
+            Update += UpdateVision;
         }
+
 
 
         #region Events
@@ -93,41 +99,35 @@ namespace WFA_POE
         private void Btn_Up_Click(object sender, EventArgs e) // Up Button
         {
             engine.MovePlayer(Character.Movement.Up);
-            DispPlayerStats();
-            UpdateMap();
-            UpdateVision();
+            Update();
         }
 
         private void Btn_Down_Click(object sender, EventArgs e) // Down Button
         {
             engine.MovePlayer(Character.Movement.Down);
-            DispPlayerStats();
-            UpdateMap();
-            UpdateVision();
+            Update();
+
         }
 
         private void Btn_Left_Click(object sender, EventArgs e) // Left Button
         {
             engine.MovePlayer(Character.Movement.Left);
-            DispPlayerStats();
-            UpdateMap();
-            UpdateVision();
+            Update();
+
         }
 
         private void Btn_Right_Click(object sender, EventArgs e) // Right Button
         {
             engine.MovePlayer(Character.Movement.Right);
-            DispPlayerStats();
-            UpdateMap();
-            UpdateVision();
+            Update();
+
         }
-        
+
         private void Btn_Stay_Click(object sender, EventArgs e)
         {
             engine.MovePlayer(Character.Movement.NoMovement);
-            DispPlayerStats();
-            UpdateMap();
-            UpdateVision();
+            Update();
+
         }
         #endregion
 
