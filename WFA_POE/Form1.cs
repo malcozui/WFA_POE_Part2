@@ -107,6 +107,7 @@ namespace WFA_POE
         {
             engine.MovePlayer(Character.Movement.Down);
             engine.MoveEnemies();
+            engine.EnemiesAttack();
             DispPlayerStats();
              
             UpdateEnemyComboBox();
@@ -120,8 +121,9 @@ namespace WFA_POE
         {
             engine.MovePlayer(Character.Movement.Left);
             engine.MoveEnemies();
+            engine.EnemiesAttack();
             DispPlayerStats();
-             
+
             UpdateEnemyComboBox();
             UpdateVision();
 
@@ -133,8 +135,9 @@ namespace WFA_POE
         {
             engine.MovePlayer(Character.Movement.Right);
             engine.MoveEnemies();
+            engine.EnemiesAttack();
             DispPlayerStats();
-             
+
             UpdateEnemyComboBox();
             UpdateVision();
 
@@ -146,8 +149,9 @@ namespace WFA_POE
         {
             engine.MovePlayer(Character.Movement.NoMovement);
             engine.MoveEnemies();
+            engine.EnemiesAttack();
             DispPlayerStats();
-             
+
             UpdateEnemyComboBox();
             UpdateVision();
 

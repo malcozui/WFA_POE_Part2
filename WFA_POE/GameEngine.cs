@@ -101,6 +101,9 @@ namespace WFA_POE
         {
             for (int i = 0; i < gameMap.GameEnemies.Length; i++)
             {
+                if (gameMap.GameEnemies[i].IsDead()) return;
+
+
                 direction = gameMap.GameEnemies[i].ReturnMove(direction);
 
                 switch (direction)
@@ -169,6 +172,32 @@ namespace WFA_POE
                         gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X - 1] = new EmptyTile(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y) { Type = Tile.TileType.EmptyTile };
                         break;
                 }
+            }
+        }
+
+        public void EnemiesAttack()
+        {
+            for (int i = 0; i < gameMap.GameEnemies.Length; i++)
+            {
+                switch (gameMap.GameEnemies[i])
+                {
+                    case SwampCreature:
+                        gameMap.GameEnemies[i].Attack(gameMap.GameHero);
+                        break;
+                    case Mage:
+                        //attacking player
+                        gameMap.GameEnemies[i].Attack(gameMap.GameHero);
+                        //attacking other enemies
+                        for (int j = 0; j < gameMap.GameEnemies.Length; j++)
+                        {
+                            if (gameMap.GameEnemies[i] == gameMap.GameEnemies[j]) continue;
+                            gameMap.GameEnemies[i].Attack(gameMap.GameEnemies[j]);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
             }
         }
 
