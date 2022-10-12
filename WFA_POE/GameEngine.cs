@@ -29,6 +29,45 @@ namespace WFA_POE
             //checks if the move is valid
             if (gameMap.GameHero.ReturnMove(direction) == direction)
             {
+                switch (direction)
+                {
+                    case Character.Movement.Up:
+                        Item? item = gameMap.GetItemAtPosition(gameMap.GameHero.Y - 1, gameMap.GameHero.X);
+                        if (item is not null)
+                        {
+                            Gold goldItem;
+                            goldItem = (Gold)item;
+                            gameMap.GameHero.GoldAmount += goldItem.GoldAmount;
+                        }
+                        break;
+                    case Character.Movement.Down:
+                        Item? item2 = gameMap.GetItemAtPosition(gameMap.GameHero.Y + 1, gameMap.GameHero.X);
+                        if (item2 is not null && item2 is Gold)
+                        {
+                            Gold goldItem;
+                            goldItem = (Gold)item2;
+                            gameMap.GameHero.GoldAmount += goldItem.GoldAmount;
+                        }
+                        break;
+                    case Character.Movement.Left:
+                        Item? item3 = gameMap.GetItemAtPosition(gameMap.GameHero.Y, gameMap.GameHero.X - 1);
+                        if (item3 is not null && item3 is Gold)
+                        {
+                            Gold goldItem;
+                            goldItem = (Gold)item3;
+                            gameMap.GameHero.GoldAmount += goldItem.GoldAmount;
+                        }
+                        break;
+                    case Character.Movement.Right:
+                        Item? item4 = gameMap.GetItemAtPosition(gameMap.GameHero.Y, gameMap.GameHero.X + 1);
+                        if (item4 is not null && item4 is Gold)
+                        {
+                            Gold goldItem;
+                            goldItem = (Gold)item4;
+                            gameMap.GameHero.GoldAmount += goldItem.GoldAmount;
+                        }
+                        break;
+                }
                 //Moves the player in the requested direction
                 gameMap.GameHero.Move(direction);
                 gameMap.GameMap[gameMap.GameHero.Y, gameMap.GameHero.X] = new Hero(gameMap.GameHero.Y, gameMap.GameHero.X, gameMap.GameHero.Hp, gameMap.GameHero.MaxHp) { Type = Tile.TileType.Hero };

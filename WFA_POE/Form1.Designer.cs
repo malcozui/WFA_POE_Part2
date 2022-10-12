@@ -157,6 +157,7 @@
             this.Btn_Stay.TabIndex = 4;
             this.Btn_Stay.Text = "None";
             this.Btn_Stay.UseVisualStyleBackColor = false;
+            this.Btn_Stay.Click += new System.EventHandler(this.Btn_Stay_Click);
             // 
             // Btn_Down
             // 

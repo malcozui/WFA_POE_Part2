@@ -16,12 +16,12 @@ namespace WFA_POE
         public override Movement ReturnMove(Movement move)
         {
             if (move == Movement.NoMovement) return move;
-            return (Charactermovement[(int)move].Type == TileType.EmptyTile) ? move : Movement.NoMovement;
+            return (Charactermovement[(int)move].Type is TileType.EmptyTile or TileType.Gold) ? move : Movement.NoMovement;
         }
 
         public override string ToString() // Display hero stats
         {
-            return ($"Player Stats :\nHp : {this.hp} / {this.maxHp} \nDamage : {this.damage}\n[{this.X},{this.Y}]");
+            return ($"Player Stats :\nHp : {this.hp} / {this.maxHp} \nDamage : {this.damage}\n[{this.X},{this.Y}]\n Gold {this.goldAmount}");
         }
     }
 }

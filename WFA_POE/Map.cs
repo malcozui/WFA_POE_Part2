@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace WFA_POE
         private Enemy[] enemies;
         private int mapWidth, mapHeight;
         private Random random = new();
-        private Item[] items;
+        private Item?[] items;
 
         /// <summary>
         /// The Constructor for the map object
@@ -99,6 +100,22 @@ namespace WFA_POE
             }
         }
 
+        public Item? GetItemAtPosition(int y, int x)
+        {
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] is null) return null;
+                
+                if (items[i].X == x && items[i].Y == y)
+                {
+                    Item? item = items[i];
+                    items[i] = null;
+                    return item;
+                }
+            }
+            return null;
+        }
+
         private Tile Create(Tile.TileType type)
         {
             bool loop;
@@ -144,21 +161,17 @@ namespace WFA_POE
                         AddEnemy(mage);
                         return mage;
                     }
-                case Tile.TileType.EmptyTile:
-                    EmptyTile tmp3 = new EmptyTile(rndmX, rndmY);
-                    map[rndmY, rndmX] = tmp3;
-                    map[rndmY, rndmX].Type = Tile.TileType.EmptyTile;
-                    return tmp3;
                 case Tile.TileType.Gold:
                     Gold gold = new Gold(rndmX, rndmY);
                     map[rndmY, rndmX] = gold;
-                    map[rndmY, rndmX].Type = Tile.TileType.EmptyTile;
+                    map[rndmY, rndmX].Type = Tile.TileType.Gold;
+                    AddItem(gold);
                     return gold;
                 default:
-                    EmptyTile tmp4 = new EmptyTile(rndmX, rndmY);
-                    map[rndmY, rndmX] = tmp4;
+                    EmptyTile empty = new EmptyTile(rndmX, rndmY);
+                    map[rndmY, rndmX] = empty;
                     map[rndmY, rndmX].Type = Tile.TileType.EmptyTile;
-                    return tmp4;
+                    return empty;
 
             }
         }
@@ -175,7 +188,7 @@ namespace WFA_POE
             }
         }
 
-        private void AddIte(Item item)
+        private void AddItem(Item item)
         {
             for (int i = 0; i < items.Length; i++)
             {

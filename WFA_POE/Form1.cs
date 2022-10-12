@@ -121,6 +121,14 @@ namespace WFA_POE
             UpdateMap();
             UpdateVision();
         }
+        
+        private void Btn_Stay_Click(object sender, EventArgs e)
+        {
+            engine.MovePlayer(Character.Movement.NoMovement);
+            DispPlayerStats();
+            UpdateMap();
+            UpdateVision();
+        }
         #endregion
 
     }

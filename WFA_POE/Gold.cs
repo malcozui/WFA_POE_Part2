@@ -16,6 +16,8 @@ namespace WFA_POE
             goldAmount = rndm.Next(1, 6);
         }
 
+        public int GoldAmount { get => goldAmount; }
+
         public override string ToString()
         {
             return goldAmount.ToString();

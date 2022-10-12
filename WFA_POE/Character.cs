@@ -11,6 +11,7 @@ namespace WFA_POE
         protected int hp;
         protected int maxHp;
         protected int damage;
+        protected int goldAmount;
         protected Tile[] charactermovement = new Tile[4];
         public enum Movement  // Player movement
         {
@@ -34,6 +35,7 @@ namespace WFA_POE
         public int Hp { get { return hp; } set { hp = value; } }
         public int MaxHp { get { return maxHp; } set { maxHp = value; } }
         public int Damage { get { return damage; } set { damage = value; } }
+        public int GoldAmount { get { return goldAmount; } set { goldAmount = value; } }
         public Tile[] Charactermovement { get { return charactermovement; } set { charactermovement = value; } }
 
         #endregion
@@ -89,7 +91,20 @@ namespace WFA_POE
                     break;
             }
         }
-        //
+        
+
+        public void Pickup(Item i)
+        {
+            switch (i)
+            {
+                case Gold:
+                    Gold tmp = (Gold)i;
+                    goldAmount += tmp.GoldAmount;
+                    break;
+                default:
+                    break;
+            }
+        }
 
         public abstract Movement ReturnMove(Movement move = 0);
 
