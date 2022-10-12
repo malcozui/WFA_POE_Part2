@@ -78,7 +78,7 @@ namespace WFA_POE
             Re_Player_Stats.Text = engine.GameMap.GameHero.ToString();
         }
 
-        private void UpdateMap() // Upadate tile map
+        private void UpdateMap() // Update tile map
         {
             LblMap.Text = engine.ToString();
         }
