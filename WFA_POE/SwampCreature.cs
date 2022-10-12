@@ -19,17 +19,19 @@ namespace WFA_POE
             bool loop = true;
             int blockedCount = 0;
 
+            //checking if all 4 tiles are full
             for (int i = 0; i < charactermovement.Length; i++)
             {
-                if (charactermovement[i].Type != TileType.EmptyTile) blockedCount++;
+                if (charactermovement[i].Type is not TileType.EmptyTile or TileType.Gold) blockedCount++;
             }
             if (blockedCount >= 4) return Movement.NoMovement;
 
+            //picking a tile
             while (loop)
             {
                 randomDirection = rndm.Next(4);
 
-                loop = !(charactermovement[randomDirection].Type == TileType.EmptyTile);
+                loop = !(charactermovement[randomDirection].Type is TileType.EmptyTile or TileType.Gold);
             }
             // when loop false the enemy move
             switch (randomDirection)
@@ -40,10 +42,10 @@ namespace WFA_POE
                 case 1:
                     return Movement.Down;
                     
-                case 3:
+                case 2:
                     return Movement.Left;
                     
-                case 4:
+                case 3:
                     return Movement.Right;
                     
                 default:

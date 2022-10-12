@@ -19,7 +19,7 @@ namespace WFA_POE
 
         public override string ToString() // Display enemy stats
         {
-            return ($"Enemy at: [{this.X}, {this.Y}], Damage amount: ({this.Damage})\n To remove: Health = {this.hp}");
+            return ($"Enemy at: [{this.X}, {this.Y}], Damage amount: ({this.Damage})\n To remove: Health = {this.hp}\n GOLD:{GoldAmount}");
         }
 
         #endregion
