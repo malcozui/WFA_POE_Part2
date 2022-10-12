@@ -130,11 +130,11 @@ namespace WFA_POE
                 case Tile.TileType.Enemy:
                     if (random.Next(2) == 0)
                     {
-                        SwampCreature tmp2 = new SwampCreature(rndmX, rndmY);
-                        map[rndmY, rndmX] = tmp2;
+                        SwampCreature swampCreature = new SwampCreature(rndmX, rndmY);
+                        map[rndmY, rndmX] = swampCreature;
                         map[rndmY, rndmX].Type = Tile.TileType.Enemy;
-                        AddEnemy(tmp2);
-                        return tmp2;
+                        AddEnemy(swampCreature);
+                        return swampCreature;
                     }
                     else
                     {
