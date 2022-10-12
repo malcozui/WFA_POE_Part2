@@ -4,7 +4,7 @@ namespace WFA_POE
     {
         private GameEngine engine;
         public delegate void Updaters();
-        Updaters Update;
+        new Updaters Update;
 
         public GameForm()
         {
