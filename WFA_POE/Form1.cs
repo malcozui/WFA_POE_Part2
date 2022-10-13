@@ -1,8 +1,13 @@
+using System.Data;
+
 namespace WFA_POE
 {
     public partial class GameForm : Form
     {
         private GameEngine engine;
+        private DataSet? dataSet = new DataSet();
+        private DataTable? dataTable = new DataTable();
+
 
         public GameForm()
         {
@@ -11,15 +16,28 @@ namespace WFA_POE
             UpdateMap();
             DispPlayerStats();
             UpdateEnemyComboBox();
+
+            //saving
+            dataSet.Tables.Add(dataTable);
+            dataTable.Columns.Add(new DataColumn("Objects", typeof(string)));
+            dataTable.Columns.Add(new DataColumn("Xpos", typeof(int)));
+            dataTable.Columns.Add(new DataColumn("YPos", typeof(int)));
+            dataTable.Columns.Add(new DataColumn("Hp", typeof(int)));
+            dataTable.Columns.Add(new DataColumn("MaxHp", typeof(int)));
+            dataTable.Columns.Add(new DataColumn("Gold", typeof(int)));
         }
 
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            dataTable.Rows.Add("Hero", engine.GameMap.GameHero.X, engine.GameMap.GameHero.Y, engine.GameMap.GameHero.Hp, engine.GameMap.GameHero.MaxHp, engine.GameMap.GameHero.GoldAmount);
 
-
+            dataSet.WriteXml("SavedData.xml");
+        }
         #region Events
         private void Btn_Attack_Click(object sender, EventArgs e)
         {
             if (ComboBox_Enemies.SelectedIndex == -1) return;
-            CheckDead();//Checking if the enemy is dead before attacking
+            if (CheckDead()) return; ;//Checking if the enemy is dead before attacking
             bool success = engine.GameMap.GameHero.CheckRange(engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex]);
             engine.GameMap.GameHero.Attack(engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex]);
             if (success) UpdateSelectedEnemyStats();
@@ -28,24 +46,7 @@ namespace WFA_POE
 
             engine.EnemiesAttack();
         }
-
-        private void CheckDead()
-        {
-            if (engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex].IsDead())
-            {
-                Re_Enemy_Stats.Text = "Enemy Dead";
-                engine.GameMap.GameMap[engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex].Y,
-                               engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex].X]
-                    = new EmptyTile(engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex].X, engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex].Y)
-                    {
-                        Type = Tile.TileType.EmptyTile
-                    };
-                UpdateMap();
-                UpdateEnemyComboBox();
-                return;
-            }
-
-        }
+        
         private void ComboBox_Enemies_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateSelectedEnemyStats();
@@ -144,7 +145,24 @@ namespace WFA_POE
 
         #region Additional Methods
 
-
+        private bool CheckDead()
+        {
+            if (engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex].IsDead())
+            {
+                Re_Enemy_Stats.Text = "Enemy Dead";
+                engine.GameMap.GameMap[engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex].Y,
+                               engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex].X]
+                    = new EmptyTile(engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex].X, engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex].Y)
+                    {
+                        Type = Tile.TileType.EmptyTile
+                    };
+                UpdateMap();
+                DispPlayerStats();
+                UpdateEnemyComboBox();
+                return true;
+            }
+            return false;
+        }
 
         #endregion
 

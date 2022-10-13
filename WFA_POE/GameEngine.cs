@@ -179,6 +179,7 @@ namespace WFA_POE
         {
             for (int i = 0; i < gameMap.GameEnemies.Length; i++)
             {
+                if (gameMap.GameEnemies[i].IsDead()) continue;
                 switch (gameMap.GameEnemies[i])
                 {
                     case SwampCreature:
