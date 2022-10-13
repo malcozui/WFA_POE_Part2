@@ -19,7 +19,7 @@ namespace WFA_POE
 
             //saving
             dataSet.Tables.Add(dataTable);
-            dataTable.Columns.Add(new DataColumn("Objects", typeof(string)));
+            dataTable.Columns.Add(new DataColumn("ObjectType", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Xpos", typeof(int)));
             dataTable.Columns.Add(new DataColumn("YPos", typeof(int)));
             dataTable.Columns.Add(new DataColumn("Hp", typeof(int)));
@@ -32,6 +32,43 @@ namespace WFA_POE
             dataTable.Rows.Add("Hero", engine.GameMap.GameHero.X, engine.GameMap.GameHero.Y, engine.GameMap.GameHero.Hp, engine.GameMap.GameHero.MaxHp, engine.GameMap.GameHero.GoldAmount);
 
             dataSet.WriteXml("SavedData.xml");
+        }
+        private void loadBtn_Click(object sender, EventArgs e)
+        {
+            engine = new GameEngine();
+
+            DataSet loadSet = new DataSet();
+            loadSet.ReadXml("SavedData.xml");
+
+            foreach (DataRow row in loadSet.Tables[0].Rows)
+            {
+                string objectType = (string)row["ObjectType"];
+                int xPos = (int)row["Xpos"];
+                int yPos = (int)row["Ypos"];
+                int hp = (int)row["Hp"];
+                int maxHp = (int)row["MaxHp"];
+                int gold = (int)row["Gold"];
+
+                switch (objectType)
+                {
+                    case "Hero":
+                        engine.GameMap.GameMap[engine.GameMap.GameHero.Y, engine.GameMap.GameHero.X] = new EmptyTile(xPos, yPos) { Type = Tile.TileType.EmptyTile }; 
+
+                        Hero hero = new Hero(xPos, yPos, hp, maxHp) { GoldAmount = gold };
+                        engine.GameMap.GameHero = hero;
+                        engine.GameMap.GameMap[yPos, xPos] = hero;
+                        break;
+                    case "Mage":
+                        break;
+                    case "Swamp Creature":
+                        break;
+                    case "Gold":
+                        engine.GameMap.GameMap[yPos, xPos] = new Gold(xPos, yPos);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
         #region Events
         private void Btn_Attack_Click(object sender, EventArgs e)

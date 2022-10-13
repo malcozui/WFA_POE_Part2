@@ -71,8 +71,8 @@ namespace WFA_POE
 
         #region Properties
 
-        public Tile[,] GameMap { get { return map; } } 
-        public Hero GameHero { get { return hero; } }
+        public Tile[,] GameMap { get { return map; } set { GameMap = value; } } 
+        public Hero GameHero { get { return hero; } set { hero = value; } }
         public Enemy[] GameEnemies { get { return enemies; } set { enemies = value; } }
         public Item[] Items { get { return items; } set { items = value; } }
 
