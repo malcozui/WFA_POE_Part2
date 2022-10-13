@@ -190,7 +190,9 @@ namespace WFA_POE
                         //attacking other enemies
                         for (int j = 0; j < gameMap.GameEnemies.Length; j++)
                         {
+                            //prevents mages from killing themselves, but not other mages
                             if (gameMap.GameEnemies[i] == gameMap.GameEnemies[j]) continue;
+                            //attacking the enemy 
                             gameMap.GameEnemies[i].Attack(gameMap.GameEnemies[j]);
                         }
                         break;
@@ -198,6 +200,10 @@ namespace WFA_POE
                         break;
                 }
 
+                if (gameMap.GameEnemies[i].IsDead())
+                {
+                    gameMap.GameMap[gameMap.GameEnemies[i].Y, gameMap.GameEnemies[i].X] = new EmptyTile(gameMap.GameEnemies[i].X, gameMap.GameEnemies[i].Y) { Type = Tile.TileType.EmptyTile };
+                }
             }
         }
 

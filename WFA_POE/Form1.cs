@@ -19,6 +19,18 @@ namespace WFA_POE
         private void Btn_Attack_Click(object sender, EventArgs e)
         {
             if (ComboBox_Enemies.SelectedIndex == -1) return;
+            CheckDead();//Checking if the enemy is dead before attacking
+            bool success = engine.GameMap.GameHero.CheckRange(engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex]);
+            engine.GameMap.GameHero.Attack(engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex]);
+            if (success) UpdateSelectedEnemyStats();
+            else Re_Enemy_Stats.Text = "Attack Unsucessful";
+            CheckDead(); //checking if the enemy is dead after attacking
+
+            engine.EnemiesAttack();
+        }
+
+        private void CheckDead()
+        {
             if (engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex].IsDead())
             {
                 Re_Enemy_Stats.Text = "Enemy Dead";
@@ -32,14 +44,8 @@ namespace WFA_POE
                 UpdateEnemyComboBox();
                 return;
             }
-            bool success = engine.GameMap.GameHero.CheckRange(engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex]);
-            engine.GameMap.GameHero.Attack(engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex]);
-            if (success) UpdateSelectedEnemyStats();
-            else Re_Enemy_Stats.Text = "Attack Unsucessful";
 
-            engine.EnemiesAttack();
         }
-
         private void ComboBox_Enemies_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateSelectedEnemyStats();
@@ -124,7 +130,7 @@ namespace WFA_POE
 
         private void DirectionHandler(Character.Movement movement)
         {
-            engine.MovePlayer(Character.Movement.NoMovement);
+            engine.MovePlayer(movement);
             engine.MoveEnemies();
             engine.EnemiesAttack();
             DispPlayerStats();
