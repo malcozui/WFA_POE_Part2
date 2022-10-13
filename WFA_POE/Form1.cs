@@ -36,6 +36,8 @@ namespace WFA_POE
             engine.GameMap.GameHero.Attack(engine.GameMap.GameEnemies[ComboBox_Enemies.SelectedIndex]);
             if (success) UpdateSelectedEnemyStats();
             else Re_Enemy_Stats.Text = "Attack Unsucessful";
+
+            engine.EnemiesAttack();
         }
 
         private void ComboBox_Enemies_SelectedIndexChanged(object sender, EventArgs e)
@@ -92,60 +94,35 @@ namespace WFA_POE
         #region Directional Buttons
         private void Btn_Up_Click(object sender, EventArgs e) // Up Button
         {
-            engine.MovePlayer(Character.Movement.Up);
-            engine.MoveEnemies();
-            DispPlayerStats();
-             
-            UpdateEnemyComboBox();
-            UpdateVision();
-
-            UpdateMap();
+            DirectionHandler(Character.Movement.Up);
 
         }
 
         private void Btn_Down_Click(object sender, EventArgs e) // Down Button
         {
-            engine.MovePlayer(Character.Movement.Down);
-            engine.MoveEnemies();
-            engine.EnemiesAttack();
-            DispPlayerStats();
-             
-            UpdateEnemyComboBox();
-            UpdateVision();
-
-            UpdateMap();
+            DirectionHandler(Character.Movement.Down);
 
         }
 
         private void Btn_Left_Click(object sender, EventArgs e) // Left Button
         {
-            engine.MovePlayer(Character.Movement.Left);
-            engine.MoveEnemies();
-            engine.EnemiesAttack();
-            DispPlayerStats();
-
-            UpdateEnemyComboBox();
-            UpdateVision();
-
-            UpdateMap();
+            DirectionHandler(Character.Movement.Left);
 
         }
 
         private void Btn_Right_Click(object sender, EventArgs e) // Right Button
         {
-            engine.MovePlayer(Character.Movement.Right);
-            engine.MoveEnemies();
-            engine.EnemiesAttack();
-            DispPlayerStats();
-
-            UpdateEnemyComboBox();
-            UpdateVision();
-
-            UpdateMap();
+            DirectionHandler(Character.Movement.Right);
 
         }
 
         private void Btn_Stay_Click(object sender, EventArgs e) //Stay in place button
+        {
+            DirectionHandler(Character.Movement.NoMovement);
+
+        }
+
+        private void DirectionHandler(Character.Movement movement)
         {
             engine.MovePlayer(Character.Movement.NoMovement);
             engine.MoveEnemies();
@@ -156,7 +133,6 @@ namespace WFA_POE
             UpdateVision();
 
             UpdateMap();
-
         }
         #endregion
 
