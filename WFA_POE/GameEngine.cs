@@ -12,9 +12,9 @@ namespace WFA_POE
         //Map TileType icons
         private static readonly string HERO = "ඞ", EMPTY = "░", SWAMP_CREATURE = "👾", OBSTACLE = "◙", GOLD = "©" , MAGE = "🧙‍"; 
 
-        public GameEngine()
+        public GameEngine(int minMapWidth, int maxMapWidth, int minMapHeight, int maxMaxHeight)
         {
-            gameMap = new Map(10, 15, 10, 15, 5, 5); 
+            gameMap = new Map(minMapWidth, maxMapWidth, minMapHeight, maxMaxHeight, 5, 5); 
         }
 
         #region Properties

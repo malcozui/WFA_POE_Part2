@@ -34,24 +34,14 @@ namespace WFA_POE
                 loop = !(charactermovement[randomDirection].Type is TileType.EmptyTile or TileType.Gold);
             }
             // when loop false the enemy move
-            switch (randomDirection)
+            return randomDirection switch
             {
-                case 0:
-                    return Movement.Up;
-                    
-                case 1:
-                    return Movement.Down;
-                    
-                case 2:
-                    return Movement.Left;
-                    
-                case 3:
-                    return Movement.Right;
-                    
-                default:
-                    return Movement.NoMovement;                
-            }
-
+                0 => Movement.Up,
+                1 => Movement.Down,
+                2 => Movement.Left,
+                3 => Movement.Right,
+                _ => Movement.NoMovement,
+            };
         }
     }
 }
