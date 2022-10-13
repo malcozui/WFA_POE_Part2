@@ -36,6 +36,16 @@ namespace WFA_POE
         private void loadBtn_Click(object sender, EventArgs e)
         {
             engine = new GameEngine();
+            engine.GameMap.Items = new Item[engine.GameMap.Items.Length];
+            engine.GameMap.GameEnemies = new Enemy[engine.GameMap.GameEnemies.Length];
+
+            for (int i = 1; i < engine.GameMap.MapWidth - 1; i++)
+            {
+                for (int j = 1; j < engine.GameMap.MapHeight - 1; j++)
+                {
+                    engine.GameMap.GameMap[i, j] = new EmptyTile(j, i) { Type = Tile.TileType.EmptyTile };
+                }
+            }
 
             DataSet loadSet = new DataSet();
             loadSet.ReadXml("SavedData.xml");
@@ -59,11 +69,37 @@ namespace WFA_POE
                         engine.GameMap.GameMap[yPos, xPos] = hero;
                         break;
                     case "Mage":
+                        Mage mage = new Mage(xPos, yPos, hp) { Type = Tile.TileType.Enemy, GoldAmount = gold };
+                        for (int i = 0; i < engine.GameMap.GameEnemies.Length; i++)
+                        {
+                            if (engine.GameMap.GameEnemies[i] is null)
+                            {
+                                engine.GameMap.GameEnemies[i] = mage;
+                            }
+                        }
+                        engine.GameMap.GameMap[yPos, xPos] = mage;
                         break;
                     case "Swamp Creature":
+                        SwampCreature swampCreature = new SwampCreature(xPos, yPos, hp) { Type = Tile.TileType.Enemy, GoldAmount = gold };
+                        for (int i = 0; i < engine.GameMap.GameEnemies.Length; i++)
+                        {
+                            if (engine.GameMap.GameEnemies[i] is null)
+                            {
+                                engine.GameMap.GameEnemies[i] = swampCreature;
+                            }
+                        }
+                        engine.GameMap.GameMap[yPos, xPos] = swampCreature;
                         break;
                     case "Gold":
-                        engine.GameMap.GameMap[yPos, xPos] = new Gold(xPos, yPos);
+                        Gold _gold = new Gold(xPos, yPos);
+                        for (int i = 0; i < engine.GameMap.Items.Length; i++)
+                        {
+                            if (engine.GameMap.Items[i] is null)
+                            {
+                                engine.GameMap.Items[i] = _gold;
+                            }
+                        }
+                        engine.GameMap.GameMap[yPos, xPos] = _gold;
                         break;
                     default:
                         break;

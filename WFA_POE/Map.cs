@@ -71,6 +71,8 @@ namespace WFA_POE
 
         #region Properties
 
+        public int MapWidth { get { return mapWidth; } }
+        public int MapHeight { get { return mapHeight; } }
         public Tile[,] GameMap { get { return map; } set { GameMap = value; } } 
         public Hero GameHero { get { return hero; } set { hero = value; } }
         public Enemy[] GameEnemies { get { return enemies; } set { enemies = value; } }
