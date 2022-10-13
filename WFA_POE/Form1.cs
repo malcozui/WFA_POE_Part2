@@ -1,3 +1,4 @@
+using System.Configuration;
 using System.Data;
 
 namespace WFA_POE
@@ -5,8 +6,6 @@ namespace WFA_POE
     public partial class GameForm : Form
     {
         private GameEngine engine;
-        private DataSet? dataSet = new DataSet();
-        private DataTable? dataTable = new DataTable();
 
 
         public GameForm()
@@ -17,6 +16,13 @@ namespace WFA_POE
             DispPlayerStats();
             UpdateEnemyComboBox();
 
+        }
+
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            DataSet? dataSet = new DataSet();
+            DataTable? dataTable = new DataTable();
+            
             //saving
             dataSet.Tables.Add(dataTable);
             dataTable.Columns.Add(new DataColumn("ObjectType", typeof(string)));
@@ -25,11 +31,30 @@ namespace WFA_POE
             dataTable.Columns.Add(new DataColumn("Hp", typeof(int)));
             dataTable.Columns.Add(new DataColumn("MaxHp", typeof(int)));
             dataTable.Columns.Add(new DataColumn("Gold", typeof(int)));
-        }
 
-        private void saveBtn_Click(object sender, EventArgs e)
-        {
+            //adding the hero to the data table
             dataTable.Rows.Add("Hero", engine.GameMap.GameHero.X, engine.GameMap.GameHero.Y, engine.GameMap.GameHero.Hp, engine.GameMap.GameHero.MaxHp, engine.GameMap.GameHero.GoldAmount);
+            for (int i = 0; i < engine.GameMap.GameEnemies.Length; i++)
+            {
+                switch (engine.GameMap.GameEnemies[i])
+                {
+                    case Mage:
+                        dataTable.Rows.Add("Mage", engine.GameMap.GameEnemies[i].X, engine.GameMap.GameEnemies[i].Y, engine.GameMap.GameEnemies[i].Hp, engine.GameMap.GameEnemies[i].MaxHp, engine.GameMap.GameEnemies[i].GoldAmount);
+                        break;
+                    case SwampCreature:
+                        dataTable.Rows.Add("Swamp Creature", engine.GameMap.GameEnemies[i].X, engine.GameMap.GameEnemies[i].Y, engine.GameMap.GameEnemies[i].Hp, engine.GameMap.GameEnemies[i].MaxHp, engine.GameMap.GameEnemies[i].GoldAmount);
+                        break;
+                }
+            }
+            for (int i = 0; i < engine.GameMap.Items.Length; i++)
+            {
+                switch (engine.GameMap.Items[i])
+                {
+                    case Gold:
+                        dataTable.Rows.Add("Gold", engine.GameMap.Items[i].X, engine.GameMap.Items[i].Y, -1, -1, ((Gold)engine.GameMap.Items[i]).GoldAmount);
+                        break;
+                }
+            }
 
             dataSet.WriteXml("SavedData.xml");
         }
