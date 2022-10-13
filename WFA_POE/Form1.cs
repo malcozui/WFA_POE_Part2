@@ -116,7 +116,7 @@ namespace WFA_POE
                         engine.GameMap.GameMap[yPos, xPos] = swampCreature;
                         break;
                     case "Gold":
-                        Gold _gold = new Gold(xPos, yPos);
+                        Gold _gold = new Gold(xPos, yPos) { Type = Tile.TileType.Gold, GoldAmount = gold };
                         for (int i = 0; i < engine.GameMap.Items.Length; i++)
                         {
                             if (engine.GameMap.Items[i] is null)
