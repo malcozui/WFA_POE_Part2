@@ -18,6 +18,7 @@ namespace WFA_POE
 
         }
 
+        #region SaveAndLoad
         private void saveBtn_Click(object sender, EventArgs e)
         {
             DataSet? dataSet = new DataSet();
@@ -135,6 +136,8 @@ namespace WFA_POE
             UpdateVision();
             StopRenderingDeadEnemies();
         }
+        #endregion
+
         #region Events
         private void Btn_Attack_Click(object sender, EventArgs e)
         {
