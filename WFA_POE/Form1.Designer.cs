@@ -43,8 +43,6 @@
             this.Btn_Left = new System.Windows.Forms.Button();
             this.Btn_Right = new System.Windows.Forms.Button();
             this.Btn_Up = new System.Windows.Forms.Button();
-            this.saveBtn = new System.Windows.Forms.Button();
-            this.loadBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -66,8 +64,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.panel1.Controls.Add(this.loadBtn);
-            this.panel1.Controls.Add(this.saveBtn);
             this.panel1.Controls.Add(this.Btn_Attack);
             this.panel1.Controls.Add(this.ComboBox_Enemies);
             this.panel1.Controls.Add(this.Re_Player_Stats);
@@ -207,28 +203,6 @@
             this.Btn_Up.UseVisualStyleBackColor = false;
             this.Btn_Up.Click += new System.EventHandler(this.Btn_Up_Click);
             // 
-            // saveBtn
-            // 
-            this.saveBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.saveBtn.Location = new System.Drawing.Point(13, 490);
-            this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(143, 45);
-            this.saveBtn.TabIndex = 6;
-            this.saveBtn.Text = "Save";
-            this.saveBtn.UseVisualStyleBackColor = false;
-            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
-            // 
-            // loadBtn
-            // 
-            this.loadBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.loadBtn.Location = new System.Drawing.Point(173, 490);
-            this.loadBtn.Name = "loadBtn";
-            this.loadBtn.Size = new System.Drawing.Size(143, 45);
-            this.loadBtn.TabIndex = 7;
-            this.loadBtn.Text = "Load";
-            this.loadBtn.UseVisualStyleBackColor = false;
-            this.loadBtn.Click += new System.EventHandler(this.loadBtn_Click);
-            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -268,7 +242,5 @@
         private Button Btn_Up;
         private Button Btn_Attack;
         private ComboBox ComboBox_Enemies;
-        private Button loadBtn;
-        private Button saveBtn;
     }
 }

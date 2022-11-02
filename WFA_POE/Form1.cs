@@ -1,4 +1,3 @@
-using System.Configuration;
 using System.Data;
 
 namespace WFA_POE
@@ -6,24 +5,18 @@ namespace WFA_POE
     public partial class GameForm : Form
     {
         private GameEngine engine;
-        
+        private DataSet? dataSet = new DataSet();
+        private DataTable? dataTable = new DataTable();
+
 
         public GameForm()
         {
             InitializeComponent();
-            engine = new GameEngine(10, 15, 10, 15);
+            engine = new GameEngine();
             UpdateMap();
             DispPlayerStats();
             UpdateEnemyComboBox();
 
-        }
-
-        #region SaveAndLoad
-        private void saveBtn_Click(object sender, EventArgs e)
-        {
-            DataSet? dataSet = new DataSet();
-            DataTable? dataTable = new DataTable();
-            
             //saving
             dataSet.Tables.Add(dataTable);
             dataTable.Columns.Add(new DataColumn("ObjectType", typeof(string)));
@@ -32,36 +25,17 @@ namespace WFA_POE
             dataTable.Columns.Add(new DataColumn("Hp", typeof(int)));
             dataTable.Columns.Add(new DataColumn("MaxHp", typeof(int)));
             dataTable.Columns.Add(new DataColumn("Gold", typeof(int)));
+        }
 
-            //adding the hero to the data table
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
             dataTable.Rows.Add("Hero", engine.GameMap.GameHero.X, engine.GameMap.GameHero.Y, engine.GameMap.GameHero.Hp, engine.GameMap.GameHero.MaxHp, engine.GameMap.GameHero.GoldAmount);
-            for (int i = 0; i < engine.GameMap.GameEnemies.Length; i++)
-            {
-                switch (engine.GameMap.GameEnemies[i])
-                {
-                    case Mage:
-                        dataTable.Rows.Add("Mage", engine.GameMap.GameEnemies[i].X, engine.GameMap.GameEnemies[i].Y, engine.GameMap.GameEnemies[i].Hp, engine.GameMap.GameEnemies[i].MaxHp, engine.GameMap.GameEnemies[i].GoldAmount);
-                        break;
-                    case SwampCreature:
-                        dataTable.Rows.Add("Swamp Creature", engine.GameMap.GameEnemies[i].X, engine.GameMap.GameEnemies[i].Y, engine.GameMap.GameEnemies[i].Hp, engine.GameMap.GameEnemies[i].MaxHp, engine.GameMap.GameEnemies[i].GoldAmount);
-                        break;
-                }
-            }
-            for (int i = 0; i < engine.GameMap.Items.Length; i++)
-            {
-                switch (engine.GameMap.Items[i])
-                {
-                    case Gold:
-                        dataTable.Rows.Add("Gold", engine.GameMap.Items[i].X, engine.GameMap.Items[i].Y, -1, -1, ((Gold)engine.GameMap.Items[i]).GoldAmount);
-                        break;
-                }
-            }
 
             dataSet.WriteXml("SavedData.xml");
         }
         private void loadBtn_Click(object sender, EventArgs e)
         {
-            engine = new GameEngine(engine.GameMap.MapWidth, engine.GameMap.MapWidth, engine.GameMap.MapHeight, engine.GameMap.MapHeight);
+            engine = new GameEngine();
             engine.GameMap.Items = new Item[engine.GameMap.Items.Length];
             engine.GameMap.GameEnemies = new Enemy[engine.GameMap.GameEnemies.Length];
 
@@ -79,11 +53,11 @@ namespace WFA_POE
             foreach (DataRow row in loadSet.Tables[0].Rows)
             {
                 string objectType = (string)row["ObjectType"];
-                int xPos = Convert.ToInt32(row["Xpos"]);
-                int yPos = Convert.ToInt32(row["Ypos"]);
-                int hp = Convert.ToInt32(row["Hp"]);
-                int maxHp = Convert.ToInt32(row["MaxHp"]);
-                int gold = Convert.ToInt32(row["Gold"]);
+                int xPos = (int)row["Xpos"];
+                int yPos = (int)row["Ypos"];
+                int hp = (int)row["Hp"];
+                int maxHp = (int)row["MaxHp"];
+                int gold = (int)row["Gold"];
 
                 switch (objectType)
                 {
@@ -95,31 +69,29 @@ namespace WFA_POE
                         engine.GameMap.GameMap[yPos, xPos] = hero;
                         break;
                     case "Mage":
+                        Mage mage = new Mage(xPos, yPos, hp) { Type = Tile.TileType.Enemy, GoldAmount = gold };
                         for (int i = 0; i < engine.GameMap.GameEnemies.Length; i++)
                         {
                             if (engine.GameMap.GameEnemies[i] is null)
                             {
-                                Mage mage = new Mage(xPos, yPos, hp) { Type = Tile.TileType.Enemy, GoldAmount = gold };
                                 engine.GameMap.GameEnemies[i] = mage;
-                                engine.GameMap.GameMap[yPos, xPos] = mage;
-                                break;
                             }
                         }
+                        engine.GameMap.GameMap[yPos, xPos] = mage;
                         break;
                     case "Swamp Creature":
+                        SwampCreature swampCreature = new SwampCreature(xPos, yPos, hp) { Type = Tile.TileType.Enemy, GoldAmount = gold };
                         for (int i = 0; i < engine.GameMap.GameEnemies.Length; i++)
                         {
                             if (engine.GameMap.GameEnemies[i] is null)
                             {
-                                SwampCreature swampCreature = new SwampCreature(xPos, yPos, hp) { Type = Tile.TileType.Enemy, GoldAmount = gold };
                                 engine.GameMap.GameEnemies[i] = swampCreature;
-                                engine.GameMap.GameMap[yPos, xPos] = swampCreature;
-                                break;
                             }
                         }
+                        engine.GameMap.GameMap[yPos, xPos] = swampCreature;
                         break;
                     case "Gold":
-                        Gold _gold = new Gold(xPos, yPos) { Type = Tile.TileType.Gold, GoldAmount = gold };
+                        Gold _gold = new Gold(xPos, yPos);
                         for (int i = 0; i < engine.GameMap.Items.Length; i++)
                         {
                             if (engine.GameMap.Items[i] is null)
@@ -133,11 +105,7 @@ namespace WFA_POE
                         break;
                 }
             }
-            UpdateVision();
-            StopRenderingDeadEnemies();
         }
-        #endregion
-
         #region Events
         private void Btn_Attack_Click(object sender, EventArgs e)
         {
@@ -149,24 +117,9 @@ namespace WFA_POE
             else Re_Enemy_Stats.Text = "Attack Unsucessful";
             CheckDead(); //checking if the enemy is dead after attacking
 
-            StopRenderingDeadEnemies();
-
             engine.EnemiesAttack();
         }
-
-        private void StopRenderingDeadEnemies()
-        {
-            for (int i = 0; i < engine.GameMap.GameEnemies.Length; i++)
-            {
-                if (engine.GameMap.GameEnemies[i].IsDead())
-                {
-                    engine.GameMap.GameMap[engine.GameMap.GameEnemies[i].Y, engine.GameMap.GameEnemies[i].X]
-                        = new EmptyTile(engine.GameMap.GameEnemies[i].X, engine.GameMap.GameEnemies[i].Y) { Type = Tile.TileType.EmptyTile };
-                }
-            }
-            UpdateMap();
-        }
-
+        
         private void ComboBox_Enemies_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateSelectedEnemyStats();
@@ -259,7 +212,6 @@ namespace WFA_POE
             UpdateEnemyComboBox();
             UpdateVision();
 
-            StopRenderingDeadEnemies();
             UpdateMap();
         }
         #endregion

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\malco\\Source\\Repos\\malcozui\\WFA_POE_Part2\\WFA_POE\\WFA_POE.csproj": {}
+    "C:\\Users\\user\\Source\\Repos\\malcozui\\WFA_POE_Part2\\WFA_POE\\WFA_POE.csproj": {}
   },
   "projects": {
-    "C:\\Users\\malco\\Source\\Repos\\malcozui\\WFA_POE_Part2\\WFA_POE\\WFA_POE.csproj": {
+    "C:\\Users\\user\\Source\\Repos\\malcozui\\WFA_POE_Part2\\WFA_POE\\WFA_POE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\malco\\Source\\Repos\\malcozui\\WFA_POE_Part2\\WFA_POE\\WFA_POE.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Source\\Repos\\malcozui\\WFA_POE_Part2\\WFA_POE\\WFA_POE.csproj",
         "projectName": "WFA_POE",
-        "projectPath": "C:\\Users\\malco\\Source\\Repos\\malcozui\\WFA_POE_Part2\\WFA_POE\\WFA_POE.csproj",
-        "packagesPath": "C:\\Users\\malco\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\malco\\Source\\Repos\\malcozui\\WFA_POE_Part2\\WFA_POE\\obj\\",
+        "projectPath": "C:\\Users\\user\\Source\\Repos\\malcozui\\WFA_POE_Part2\\WFA_POE\\WFA_POE.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\Source\\Repos\\malcozui\\WFA_POE_Part2\\WFA_POE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\malco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

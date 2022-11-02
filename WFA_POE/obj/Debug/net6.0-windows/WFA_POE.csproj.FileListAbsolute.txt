@@ -32,20 +32,3 @@ C:\Users\wikho\source\repos\WFA_POE_Part2\New folder\WFA_POE\obj\Debug\net6.0-wi
 C:\Users\wikho\source\repos\WFA_POE_Part2\New folder\WFA_POE\obj\Debug\net6.0-windows\WFA_POE.pdb
 C:\Users\wikho\source\repos\WFA_POE_Part2\New folder\WFA_POE\obj\Debug\net6.0-windows\WFA_POE.genruntimeconfig.cache
 C:\Users\wikho\source\repos\WFA_POE_Part2\New folder\WFA_POE\obj\Debug\net6.0-windows\ref\WFA_POE.dll
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\obj\Debug\net6.0-windows\WFA_POE.csproj.AssemblyReference.cache
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\obj\Debug\net6.0-windows\WFA_POE.GameForm.resources
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\obj\Debug\net6.0-windows\WFA_POE.csproj.GenerateResource.cache
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\obj\Debug\net6.0-windows\WFA_POE.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\obj\Debug\net6.0-windows\WFA_POE.AssemblyInfoInputs.cache
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\obj\Debug\net6.0-windows\WFA_POE.AssemblyInfo.cs
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\obj\Debug\net6.0-windows\WFA_POE.csproj.CoreCompileInputs.cache
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\obj\Debug\net6.0-windows\WFA_POE.dll
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\obj\Debug\net6.0-windows\refint\WFA_POE.dll
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\obj\Debug\net6.0-windows\WFA_POE.pdb
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\bin\Debug\net6.0-windows\WFA_POE.exe
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\bin\Debug\net6.0-windows\WFA_POE.deps.json
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\bin\Debug\net6.0-windows\WFA_POE.runtimeconfig.json
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\bin\Debug\net6.0-windows\WFA_POE.dll
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\bin\Debug\net6.0-windows\WFA_POE.pdb
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\obj\Debug\net6.0-windows\WFA_POE.genruntimeconfig.cache
-C:\Users\malco\Source\Repos\malcozui\WFA_POE_Part2\WFA_POE\obj\Debug\net6.0-windows\ref\WFA_POE.dll
